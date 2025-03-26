@@ -25,15 +25,32 @@ public class UIInventory : MonoBehaviour
         }
 
         slotList.Clear();
+    }
 
-        foreach (Item item in _items)
+    public void RefreshInventoryUI()
+    {
+        foreach (UISlot slot in slotList)
         {
-            GameObject slotObj = Instantiate(slotPrefab, slotParent);
-            UISlot slot = slotObj.GetComponent<UISlot>();
-            slot.SetItem(item);
-            slotList.Add(slot);
+            slot.RefreshSlot();
         }
     }
+    public void AddItemToInventory(Item _item)
+    {
+        GameObject slotObj = Instantiate(slotPrefab, slotParent);
+        UISlot slot = slotObj.GetComponent<UISlot>();
+        slot.SetItem(_item);
+        slotList.Add(slot);
+    }
+    public void AddItemToInventory(ItemData _itemData)
+    {
+        Item item = ItemManager.Instance.CreateItem(_itemData);
+
+        GameObject slotObj = Instantiate(slotPrefab, slotParent);
+        UISlot slot = slotObj.GetComponent<UISlot>();
+        slot.SetItem(item);
+        slotList.Add(slot);
+    }
+
     public void CloseInventory()
     {
         gameObject.SetActive(false);

@@ -33,15 +33,12 @@ public class GameManager : MonoBehaviour
     {
         player = new Character("Player", 1, 100, 10, 10);
 
-        Item dagger = itemManager.CreateItem(itemManager.daggerData);
-        Item potion = itemManager.CreateItem(itemManager.potionData);
-
-        player.AddItem(dagger);
-        player.AddItem(potion);
-
         uiManager.uiMainMenu.SetCharacterInfo(player);
         uiManager.uiStatus.SetCharacterInfo(player);
         uiManager.uiInventory.InitInventoryUI(player.inventory);
+
+        uiManager.uiInventory.AddItemToInventory(itemManager.daggerData);
+        uiManager.uiInventory.AddItemToInventory(itemManager.potionData);
 
         uiManager.uiMainMenu.OpenMainMenu();
     }

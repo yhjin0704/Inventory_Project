@@ -9,8 +9,12 @@ public class UIMainMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI levelText;
 
+    private UIManager uiManager;
+
     private void Start()
     {
+        uiManager = UIManager.Instance;
+
         statusButton.onClick.AddListener(OpenStatus);
         inventoryButton.onClick.AddListener(OpenInventory);
     }
@@ -18,20 +22,21 @@ public class UIMainMenu : MonoBehaviour
     public void OpenMainMenu()
     {
         gameObject.SetActive(true);
-        UIManager.Instance.uiStatus.gameObject.SetActive(false);
-        UIManager.Instance.uiInventory.gameObject.SetActive(false);
+        uiManager.uiStatus.gameObject.SetActive(false);
+        uiManager.uiInventory.gameObject.SetActive(false);
     }
 
     public void OpenStatus()
     {
-        UIManager.Instance.uiStatus.gameObject.SetActive(true);
-        UIManager.Instance.uiStatus.RefreshUIStatus();
+        uiManager.uiStatus.gameObject.SetActive(true);
+        uiManager.uiStatus.RefreshUIStatus();
         gameObject.SetActive(true);
     }
 
     public void OpenInventory()
     {
-        UIManager.Instance.uiInventory.gameObject.SetActive(true);
+        uiManager.uiInventory.gameObject.SetActive(true);
+        uiManager.uiInventory.RefreshInventoryUI();
         gameObject.SetActive(true);
     }
 

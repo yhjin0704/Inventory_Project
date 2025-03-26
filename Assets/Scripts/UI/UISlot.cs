@@ -27,7 +27,8 @@ public class UISlot : MonoBehaviour
 
         UIManager.Instance.uiStatus.RefreshUIStatus();
     }
-    private void RefreshSlot()
+
+    public void RefreshSlot()
     {
         if (item == null)
         {
